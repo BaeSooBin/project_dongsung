@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동성 팝업창</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+<div id="popWrap">
+    <div class="gap">
+        <div class="container">
+            <div class="content">
+                <h2>동성 공지사항</h2>
+                <div class="button-box"> 
+                    <form name="popupForm">
+                        <span>
+                            <input type="checkbox" name="cookieChk" id="chk" value="">
+                            <label for="chk">3일동안 열리지 않음</label>
+                        </span>
+                        <button class="close-btn">닫기</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var $closeBtn = document.querySelector('.close-btn');
+    var today = null;
+    var txt = '';
+
+    function setCookieFn(name, value, expires){
+        today = new Date();
+        today.setDate( today.getDate() + expires );
+
+        txt += name + '=' + value + ';';
+        txt += 'expires=' + today.toUTCString() + ';path=/';
+
+        document.cookie = txt;
+    }
+
+    $closeBtn.addEventListener( 'click', function(e){
+        e.preventDefault();
+        if(popupForm.cookieChk.checked){
+            setCookieFn('popUp_01','yes',3);
+        }
+        self.close();
+    });
+
+</script>
+
+</body>
+</html>
